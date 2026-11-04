@@ -1,27 +1,171 @@
+
 <!DOCTYPE html>
 <html>
 <head>
+<title>Mid Semester Result</title>
+
 <style>
-body{
-background-color:lightblue;
+body {
+    background-color: lightblue;
+    font-family: Arial;
 }
-h1{
-background-color: darkblue;
+
+h1 {
+    background-color: darkblue;
+    color: white;
+    padding: 15px;
 }
-button
-{
-background-color: grey;
+
+button {
+    background-color: grey;
+    padding: 10px 20px;
+    cursor: pointer;
 }
+
 button:hover {
     background-color: blue;
+    color: white;
+}
+
+#result {
+    background-color: white;
+    margin: 20px;
+    padding: 15px;
+    width: 300px;
 }
 </style>
 </head>
+
 <body>
+
 <center>
+
 <h1>Mid Semester Result</h1>
-<input type="number" placeholder="Enter your Register Number"><br><br>
-<button>Submit</button>
+
+<input type="number" id="rollno"
+placeholder="Enter Register Number">
+
+<br><br>
+
+<button onclick="showResult()">Submit</button>
+
+<div id="result"></div>
+
 </center>
+
+<script>
+
+let students = [
+
+{
+    RollNo: 101,
+    Name: "Arthi",
+    Department: "IT",
+    Semester: 5,
+    Python: 85,
+    JavaScript: 90,
+    SQL: 80
+},
+
+{
+    RollNo: 102,
+    Name: "Priya",
+    Department: "CSE",
+    Semester: 5,
+    Python: 75,
+    JavaScript: 80,
+    SQL: 85
+},
+
+{
+    RollNo: 103,
+    Name: "Divya",
+    Department: "IT",
+    Semester: 5,
+    Python: 90,
+    JavaScript: 95,
+    SQL: 88
+},
+
+{
+    RollNo: 104,
+    Name: "Kaviya",
+    Department: "BCA",
+    Semester: 5,
+    Python: 65,
+    JavaScript: 70,
+    SQL: 75
+},
+
+{
+    RollNo: 105,
+    Name: "Nithya",
+    Department: "IT",
+    Semester: 5,
+    Python: 40,
+    JavaScript: 45,
+    SQL: 50
+}
+
+];
+
+function showResult() {
+
+    let roll = Number(
+        document.getElementById("rollno").value
+    );
+
+    let student = students.find(
+        s => s.RollNo === roll
+    );
+
+    if (student) {
+
+        let total = student.Python +
+                    student.JavaScript +
+                    student.SQL;
+
+        let average = total / 3;
+
+        let result = average >= 40 ? "Pass" : "Fail";
+
+        document.getElementById("result").innerHTML =
+
+        "<h2>Student Result</h2>" +
+
+        "Name: " + student.Name + "<br><br>" +
+
+        "Register Number: " + student.RollNo + "<br><br>" +
+
+        "Department: " + student.Department + "<br><br>" +
+
+        "Semester: " + student.Semester + "<br><br>" +
+
+        "Python Mark: " + student.Python + "<br><br>" +
+
+        "JavaScript Mark: " + student.JavaScript + "<br><br>" +
+
+        "SQL Mark: " + student.SQL + "<br><br>" +
+
+        "Total: " + total + " / 300<br><br>" +
+
+        "Average: " + average.toFixed(2) + "<br><br>" +
+
+        "Result: " + result;
+
+    }
+
+    else {
+
+        document.getElementById("result").innerHTML =
+        "<h3>Invalid Register Number!</h3>";
+
+    }
+
+}
+
+</script>
+
 </body>
 </html>
+
